@@ -30,7 +30,7 @@ export const PHASE_LABEL: Record<TimePhase, string> = {
 
 /** Luminosité ambiante 0 (noir) → 1 (plein jour). */
 export function ambientLight(minutes: number, eternalNight = false): number {
-  if (eternalNight) return 0.25;
+  if (eternalNight) return 0.34;
   const m = ((minutes % MINUTES_PER_DAY) + MINUTES_PER_DAY) % MINUTES_PER_DAY;
   const h = m / 60;
   if (h >= 8 && h < 18) return 1;

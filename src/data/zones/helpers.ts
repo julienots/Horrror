@@ -15,7 +15,7 @@ export function npc(
 
 export function sign(id: string, x: number, y: number, text: string | ScriptCmd[], opts: Partial<EntityDef> = {}): EntityDef {
   const script = typeof text === 'string' ? [{ say: text }] : text;
-  return { id, x, y, kind: 'panneau', solid: true, script, ...opts };
+  return { id, x, y, kind: 'panneau', sprite: 'panneau', solid: true, script, ...opts };
 }
 
 /** Objet à ramasser une seule fois. */

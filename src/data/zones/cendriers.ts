@@ -17,8 +17,8 @@ export const cendriers: ZoneDef = {
   ambience: 'cendriers',
   music: 'cendriers',
   eternalNight: true,
-  fog: 0.55,
-  dark: 0.5,
+  fog: 0.4,
+  dark: 0.45,
   mapPos: [6, 5],
   map: [
     '###########TTTT..TTTT###########',
