@@ -131,6 +131,25 @@ describe('combat', () => {
     expect(b2.outcome).toBe('flee');
   });
 
+  it('jamais sans action : sans énergie ni capacité gratuite, on peut se débattre', () => {
+    const s = withTeam('veilleuse_eveillee', 30);
+    s.team[0].abilities = ['cauchemar', 'reve_eveille'];
+    const b = fight(s, 'mitaine', 5, 1);
+    b.player.c.energy = 0;
+    const usable = abilityOptions(b).filter((o) => o.usable);
+    expect(usable.map((o) => o.id)).toEqual(['debattre']);
+    const hp = b.foe.c.hp;
+    playerTurn(s, b, { kind: 'ability', id: 'debattre' });
+    expect(b.foe.c.hp).toBeLessThan(hp);
+  });
+
+  it('les capacités par défaut gardent toujours une capacité gratuite', () => {
+    for (const sp of ['veilleuse_eveillee', 'grand_pli', 'archivore', 'ronce_reine']) {
+      const c = makeCreature(null, sp, 40);
+      expect(c.abilities.some((a) => a === 'debattre' || ['songe', 'absence', 'griffure', 'murmure', 'braise', 'eclat', 'radicelle', 'gresillement'].includes(a)), sp).toBe(true);
+    }
+  });
+
   it('énergie insuffisante : la capacité est refusée sans perdre le tour', () => {
     const s = withTeam('palefeu', 20);
     const b = fight(s, 'mitaine', 5, 1);

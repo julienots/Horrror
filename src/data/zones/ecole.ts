@@ -233,7 +233,7 @@ export const classe_absente: ZoneDef = {
       { quest: 'q_main', stage: 5 },
       { horror: 'pas' },
       { say: 'Derrière vous, la voix compte : « …vingt-trois. Vingt-quatre. » Elle s’arrête. « Le compte est bon. »' },
-      { battle: 'pli', level: 10, then: [{ setFlag: 'pli_rencontre' }] },
+      { battle: 'pli', level: 8, then: [{ setFlag: 'pli_rencontre' }] },
     ]),
     look('tableau_absente', 1, 1, 'Au tableau : une liste de vingt-quatre prénoms. Vingt-trois sont barrés. Le dernier est illisible, comme vu à travers de l’eau.'),
     look('cartable', 8, 3, 'Un cartable ouvert. Dedans, une trousse, un goûter emballé dans du papier journal du 11 décembre 1996, et une veilleuse débranchée.'),

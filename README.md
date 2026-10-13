@@ -31,7 +31,7 @@ Sur écran tactile, une croix directionnelle et des boutons apparaissent automat
 ## Tests
 
 ```bash
-npm test            # 79 tests unitaires et d’intégration (Vitest, sans navigateur)
+npm test            # 88 tests unitaires et d’intégration (Vitest, sans navigateur)
 npm run smoke       # test de fumée dans Chromium : titre, intro, marche, menus, combat,
                     # sauvegarde auto, 3000 images simulées, 4 résolutions
 npm run scenarios   # scénarios joués au clavier : porte, dialogue au comptoir, sommeil,
@@ -49,7 +49,7 @@ Ce que couvrent les tests unitaires (`tests/`) :
 - **Combat** : combat complet, défaite, changement forcé, affinités, statuts simultanés, immunités, fuite interdite, énergie insuffisante.
 - **Lien** : observer, apaiser, pacte, offrande, choix nécessitant un indice, repousser, créature impossible à lier, équipe pleine vers le Reliquaire.
 - **Progression** : courbe d’expérience, apprentissage, transformations par niveau et par lien.
-- **Équilibrage** (simulations) : la créature de départ gagne le début de jeu, durée moyenne des combats, l’avantage d’affinité se ressent, aucune espèce commune n’est imbattable ni sans espoir.
+- **Équilibrage** (simulations) : la créature de départ gagne le début de jeu, durée moyenne des combats, l’avantage d’affinité se ressent, aucune espèce commune n’est imbattable ni sans espoir, et chaque combat imposé par l’histoire est gagnable avec une équipe plausible tout en restant exigeant (`bosses.test.ts`). Un Rémanent n’est jamais sans action (« Se débattre » quand l’énergie manque).
 - **Inventaire** : objets uniques jamais dupliqués, piles et sac plein sans perte, équiper/déséquiper sans duplication, documents qui changent après certaines scènes.
 - **Sauvegarde** : aller-retour, données altérées (somme de contrôle) → copie de secours, fermeture inattendue pendant l’écriture → fichier temporaire récupéré, version future refusée, réparations (position, objets inconnus, doublons, bornes), données arbitraires sans plantage.
 - **Horreur** : délai global entre événements, plafonds, mode atténué.

@@ -58,6 +58,15 @@ export function abilitiesAt(species: string, level: number): string[] {
   return out.map(([, a]) => a);
 }
 
+/** Les 4 dernières capacités apprises, en gardant toujours une capacité gratuite. */
+export function defaultActives(known: string[]): string[] {
+  const act = known.slice(-4);
+  if (act.some((a) => ABILITIES[a]?.cost === 0)) return act;
+  const free = [...known].reverse().find((a) => ABILITIES[a]?.cost === 0);
+  if (free) act[0] = free;
+  return act;
+}
+
 /** Crée une instance de créature à un niveau donné (capacités = 4 dernières apprises). */
 export function makeCreature(state: GameState | null, species: string, level: number): CreatureInstance {
   const d = CREATURES[species];
@@ -70,7 +79,7 @@ export function makeCreature(state: GameState | null, species: string, level: nu
     xp: xpForLevel(level),
     hp: 1,
     energy: 0,
-    abilities: known.slice(-4),
+    abilities: defaultActives(known),
     known: [...known],
     bond: 0,
     bondXp: 0,

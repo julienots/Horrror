@@ -250,7 +250,7 @@ export interface AbilityOption {
 }
 
 export function abilityOptions(b: Battle): AbilityOption[] {
-  return b.player.c.abilities
+  const opts: AbilityOption[] = b.player.c.abilities
     .filter((id) => ABILITIES[id])
     .map((id) => {
       const def = ABILITIES[id];
@@ -259,6 +259,9 @@ export function abilityOptions(b: Battle): AbilityOption[] {
       if (cost > b.player.c.energy) return { id, def, cost, usable: false, reason: 'Énergie' };
       return { id, def, cost, usable: true };
     });
+  // Jamais sans action : sans capacité utilisable, on peut toujours se débattre.
+  if (!opts.some((o) => o.usable)) opts.push({ id: STRUGGLE.id, def: STRUGGLE, cost: 0, usable: true });
+  return opts;
 }
 
 // ---------------------------------------------------------------- Exécution d'une capacité

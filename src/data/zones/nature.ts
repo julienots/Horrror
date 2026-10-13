@@ -186,7 +186,7 @@ export const clairiere: ZoneDef = {
           else: [
             { horror: 'secousse' },
             { say: 'Elle se dresse. Les cendres tourbillonnent. Elle ne vous laissera pas approcher du berceau.' },
-            { battle: 'mere_cendre', level: 16, boss: true, onBond: [{ questDone: 'q_chapelle' }, { give: 'mouchoir_brode' }] },
+            { battle: 'mere_cendre', level: 15, boss: true, onBond: [{ questDone: 'q_chapelle' }, { give: 'mouchoir_brode' }] },
           ],
         },
       ],
