@@ -17,6 +17,45 @@ game.makeExplore = () => {
   return ex;
 };
 
+// Commandes tactiles : croix directionnelle et boutons, seulement sur écran tactile.
+function touchControls(): void {
+  const coarse = window.matchMedia?.('(pointer: coarse)').matches || 'ontouchstart' in window;
+  if (!coarse) return;
+  const pad = document.createElement('div');
+  pad.id = 'tactile';
+  const buttons: Array<[string, import('./engine/input').Action, string]> = [
+    ['▲', 'up', 'dpad up'],
+    ['▼', 'down', 'dpad down'],
+    ['◀', 'left', 'dpad left'],
+    ['▶', 'right', 'dpad right'],
+    ['A', 'confirm', 'btn a'],
+    ['B', 'cancel', 'btn b'],
+    ['☰', 'menu', 'btn menu'],
+    ['»', 'run', 'btn run'],
+  ];
+  for (const [label, action, cls] of buttons) {
+    const b = document.createElement('button');
+    b.textContent = label;
+    b.className = cls;
+    b.setAttribute('aria-label', action);
+    const down = (e: Event) => {
+      e.preventDefault();
+      game.input.virtual(action, true);
+    };
+    const up = (e: Event) => {
+      e.preventDefault();
+      game.input.virtual(action, false);
+    };
+    b.addEventListener('pointerdown', down);
+    b.addEventListener('pointerup', up);
+    b.addEventListener('pointerleave', up);
+    b.addEventListener('pointercancel', up);
+    pad.appendChild(b);
+  }
+  document.body.appendChild(pad);
+}
+touchControls();
+
 function fit(): void {
   // Le canevas garde un format 16:9 et s'adapte à la fenêtre.
   const ratio = 16 / 9;

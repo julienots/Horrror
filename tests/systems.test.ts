@@ -416,6 +416,16 @@ describe('inventaire', () => {
     expect(s.inventory.bague_verre).toBe(1);
     expect(c.equip).toBeUndefined();
   });
+  it('les documents changent après certaines scènes', () => {
+    const s = newGame(1);
+    addItem(s, 'photo_classe');
+    const before = readDocument(s, 'photo_classe').text;
+    s.flags.revelation = true;
+    const after = readDocument(s, 'photo_classe').text;
+    s.flags.verite_revelee = true;
+    const after2 = readDocument(s, 'photo_classe').text;
+    expect(new Set([before, after, after2]).size).toBe(3);
+  });
   it('documents : la lecture donne l’indice une seule fois, et sous condition', () => {
     const s = newGame(1);
     addItem(s, 'journal_perso');

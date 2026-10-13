@@ -235,5 +235,6 @@ export function readDocument(state: GameState, itemId: string): { text: string; 
   if (!state.readDocs.includes(itemId)) state.readDocs.push(itemId);
   let clueMsg: string | null = null;
   if (def.clue && evalCondition(state, def.clueWhen)) clueMsg = addClue(state, def.clue);
-  return { text: def.document, clueMsg };
+  const alt = def.documentAlt?.find((a) => evalCondition(state, a.when));
+  return { text: alt?.text ?? def.document, clueMsg };
 }

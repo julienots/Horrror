@@ -168,6 +168,7 @@ export interface ItemDef {
   equip?: { stat?: Partial<Record<StageKey, number>>; resist?: StatusId; desc: string };
   requirement?: string; // prérequis affiché
   clueWhen?: Condition; // l'indice n'est obtenu à la lecture que si...
+  documentAlt?: Array<{ when: Condition; text: string }>; // le document change après certaines scènes
   document?: string; // texte lisible pour les documents/cassettes
   clue?: string; // indice obtenu en lisant
   value?: number;

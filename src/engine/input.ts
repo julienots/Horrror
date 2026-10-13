@@ -128,6 +128,22 @@ export class Input {
     this.padPrev = now;
   }
 
+  /** Commandes tactiles virtuelles (écrans tactiles). */
+  virtual(a: Action, down: boolean): void {
+    this.firstInput();
+    if (down) {
+      if (!this.held.has(a)) {
+        this.held.add(a);
+        this.pressedNow.add(a);
+        this.repeatTimers.set(a, 0);
+        this.anyKeyPressed = true;
+      }
+    } else {
+      this.held.delete(a);
+      this.repeatTimers.delete(a);
+    }
+  }
+
   pressed(a: Action): boolean {
     return this.pressedNow.has(a);
   }

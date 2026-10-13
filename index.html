@@ -25,6 +25,27 @@
         background: #000;
         outline: none;
       }
+      #tactile button {
+        position: fixed;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        border: 1px solid #5a5f6a;
+        background: rgba(10, 11, 15, 0.55);
+        color: #d9d4c7;
+        font: 22px monospace;
+        touch-action: none;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      #tactile .dpad.up { left: 76px; bottom: 136px; }
+      #tactile .dpad.down { left: 76px; bottom: 16px; }
+      #tactile .dpad.left { left: 16px; bottom: 76px; }
+      #tactile .dpad.right { left: 136px; bottom: 76px; }
+      #tactile .btn.a { right: 16px; bottom: 76px; color: #c9b458; }
+      #tactile .btn.b { right: 82px; bottom: 26px; }
+      #tactile .btn.menu { right: 16px; top: 16px; width: 44px; height: 44px; font-size: 18px; }
+      #tactile .btn.run { right: 82px; bottom: 126px; width: 44px; height: 44px; font-size: 18px; }
       noscript {
         color: #ccc;
         font-family: monospace;

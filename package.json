@@ -11,7 +11,10 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "smoke": "node scripts/smoke.mjs"
+    "smoke": "node scripts/smoke.mjs",
+    "scenarios": "node scripts/scenarios.mjs",
+    "gallery": "node scripts/gallery.mjs",
+    "check": "tsc --noEmit && vitest run && vite build && node scripts/smoke.mjs && node scripts/scenarios.mjs"
   },
   "license": "UNLICENSED",
   "devDependencies": {

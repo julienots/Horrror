@@ -121,6 +121,29 @@ try {
     return (performance.now() - t0) / 120;
   });
   console.log(`Rendu moyen : ${perf.toFixed(2)} ms/image`);
+  // Session prolongée : 3000 images simulées (≈ 50 s de jeu) sans erreur ni dérive
+  const long = await page.evaluate(() => {
+    const g = window.__veilbound;
+    const t0 = performance.now();
+    const before = g.state.time;
+    for (let i = 0; i < 3000; i++) g.tick(1 / 60);
+    return { ms: (performance.now() - t0) / 3000, advanced: g.state.time !== before, stack: g.stack.length };
+  });
+  console.log(`Session prolongée : ${long.ms.toFixed(2)} ms/image, temps qui passe : ${long.advanced}, pile de scènes : ${long.stack}`);
+  if (long.stack !== 1) throw new Error('La pile de scènes a grossi pendant la session prolongée');
+  // Résolutions : le canevas reste entier dans la fenêtre, au format 16:9
+  for (const [w, h] of [[800, 600], [1920, 1080], [390, 844], [1366, 768]]) {
+    await page.setViewportSize({ width: w, height: h });
+    await wait(250);
+    const r = await page.evaluate(() => {
+      const b = document.getElementById('jeu').getBoundingClientRect();
+      return { w: b.width, h: b.height, top: b.top, left: b.left };
+    });
+    const ok = r.w <= w + 1 && r.h <= h + 1 && r.top >= -1 && r.left >= -1 && Math.abs(r.w / r.h - 16 / 9) < 0.02;
+    console.log(`Résolution ${w}×${h} : canevas ${Math.round(r.w)}×${Math.round(r.h)} ${ok ? 'OK' : 'ÉCHEC'}`);
+    if (!ok) throw new Error(`Mise à l’échelle incorrecte en ${w}×${h}`);
+    await shot(`res-${w}x${h}`);
+  }
   if (errors.length) throw new Error(`Erreurs JS :\n${errors.join('\n')}`);
   console.log('SMOKE OK');
 } catch (e) {
