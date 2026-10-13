@@ -1,0 +1,26 @@
+{
+  "name": "veilbound",
+  "private": true,
+  "version": "0.1.0",
+  "description": "VEILBOUND — Les Enfants du Brouillard. RPG 2D d'exploration et de lien avec des créatures horrifiques originales.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "playwright-core": "1.56",
+    "typescript": "5.9",
+    "vite": "^7.3.7",
+    "vitest": "^3.2.7"
+  },
+  "dependencies": {
+    "@fontsource/vt323": "^5.3.0"
+  }
+}
