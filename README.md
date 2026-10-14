@@ -15,6 +15,17 @@ npm run preview    # sert le build de production
 
 Le build est statique (`dist/`) : il peut être hébergé tel quel sur n’importe quel serveur web.
 
+### Application Android (APK)
+
+Le jeu est emballé pour Android avec Capacitor (dossier `android/`) : plein écran immersif, orientation paysage, écran maintenu allumé, commandes tactiles à l’écran, icône et écran de démarrage tirés du sprite de la Veilleuse.
+
+```bash
+export ANDROID_HOME=/chemin/vers/android-sdk   # plateforme 35 + build-tools 35
+npm run android                                # → android/app/build/outputs/apk/debug/app-debug.apk
+```
+
+Il faut Java 21. L’APK produit est signé avec la clé de débogage : il s’installe directement (« sources inconnues » à autoriser), mais pour une publication sur un magasin d’applications il faudra le signer avec votre propre clé.
+
 ### Contrôles
 
 | Action | Clavier | Manette |

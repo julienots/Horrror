@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">VEILBOUND</string>
+    <string name="title_activity_main">VEILBOUND</string>
+    <string name="package_name">fr.veilbound.jeu</string>
+    <string name="custom_url_scheme">fr.veilbound.jeu</string>
+</resources>

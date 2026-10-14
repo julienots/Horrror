@@ -1,0 +1,6 @@
+{
+  "appId": "fr.veilbound.jeu",
+  "appName": "VEILBOUND",
+  "webDir": "dist",
+  "android": { "backgroundColor": "#000000" }
+}

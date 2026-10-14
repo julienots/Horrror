@@ -14,16 +14,20 @@
     "smoke": "node scripts/smoke.mjs",
     "scenarios": "node scripts/scenarios.mjs",
     "gallery": "node scripts/gallery.mjs",
+    "android": "vite build && node scripts/android-icons.mjs && cap sync android && cd android && ./gradlew assembleDebug",
     "check": "tsc --noEmit && vitest run && vite build && node scripts/smoke.mjs && node scripts/scenarios.mjs"
   },
   "license": "UNLICENSED",
   "devDependencies": {
+    "@capacitor/cli": "^7.6.9",
     "playwright-core": "1.56",
     "typescript": "5.9",
     "vite": "^7.3.7",
     "vitest": "^3.2.7"
   },
   "dependencies": {
+    "@capacitor/android": "^7.6.9",
+    "@capacitor/core": "^7.6.9",
     "@fontsource/vt323": "^5.3.0"
   }
 }
